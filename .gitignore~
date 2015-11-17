@@ -1,0 +1,9 @@
+unbalance/*~
+unbalance/exec_result/*
+unbalance/jobs/*
+unbalance/#*#
+sw2times/*~
+sw2times/exec_result/*
+sw2times/jobs/*
+sw2times/#*#
+0110.txt
