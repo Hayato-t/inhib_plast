@@ -36,16 +36,6 @@ proc connectInputCells() { local i, j, k, targid, num_ecell,num_vta, num_cell, n
     r = new Random(25525)
     
     num_vta = 0
-/*    
-    confirm = new Matrix()
-    confirm.resize(NCELL,NCELL)
-    for i=0,NCELL-1{
-	for j=0,NCELL-1{
-	    confirm.x[i][j]=0
-	}
-    }
-    
-    */
     mem = -1
     //read_mat()
     for i=0, num_ecell-1{
@@ -73,13 +63,17 @@ proc connectInputCells() { local i, j, k, targid, num_ecell,num_vta, num_cell, n
 		    nclist.append(nc)
 		    nc.threshold=0
 		    
-		    nc.delay = con.x[i][j]*20//*6//con.x[i][j]*5//10//0.1//*con.x[i][j]
+		    nc.delay = con.x[i][j]*20
+		    
+		    /*
 		    if(j>i){
-			nc.weight = INPUT_I//*2//*con.x[i][j]//0.1//0.03
+			nc.weight = INPUT_I
 		    }else{
 			//nc.delay = 0.1
 			nc.weight = INPUT_I*0.25//*0.04
 		    }
+		    */
+		    nc.weight = INPUT_I * 0.25
 		    
 		    if((int(i/16)<1) || (int(i/16)>14) || (i%16==0) || (i%16==15)){
 			nc.weight *= 2
@@ -118,10 +112,6 @@ proc connectInputCells() { local i, j, k, targid, num_ecell,num_vta, num_cell, n
     }
 }
 
-/////////////////////////////////////////////////////////TODO////////////////////////////////////////////////////////////////
-//shold be modified to the manner from the single compartment to the double compartmentmodel////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 proc connectOutput1Cells() { local i, j, k,l, pargid, num_ecell_out1, num_syn, num_vta, num_cell_out1, num_cell_input, num_cell_full, cellid localobj src, target, syn, nc, nil
     num_ecell_out1 = $1
     num_vta = $2
@@ -130,22 +120,7 @@ proc connectOutput1Cells() { local i, j, k,l, pargid, num_ecell_out1, num_syn, n
     num_cell_full = $5
     nclist_out1 = new List()
     r = new Random(25525)
-/*    
-    confirm = new Matrix()
-    confirm.resize(NCELL,NCELL)
-    for i=0,NCELL-1{
-	for j=0,NCELL-1{
-	    confirm.x[i][j]=0
-	}
-    }
-    
-    */
     mem = -1
-    //read_mat()
-    
-    //the association with con is preserved, but the fact connect index is shifted by num_cell_input
-    //when syn is made, the num in the out2 pool is used 
-    //when connecting other cells, the num in the full pool is used
      for i=0, num_cell_out1-1{
 	if(pc.gid_exists(i+num_cell_input)){
 	    for j=0, num_cell_out1-1{
@@ -409,6 +384,10 @@ proc set_LR(){local i, j
 	    cells.o(i).synlist_e.o(j).LR = LEARNING_RATE
 	    cells.o(i).synlist_e.o(j).ltd = LTD
 	}
+	for j=0, cells.o(i).synlist_i.count-1{
+	    cells.o(i).synlist_i.o(j).LR = LEARNING_RATE_I
+	    cells.o(i).synlist_i.o(j).ltd = LTD
+	}
     }
 }
 
@@ -418,6 +397,10 @@ proc set_LR_input(){local i, j
 	    for j=0, pc.gid2cell(i).synlist_e.count-1{
 		pc.gid2cell(i).synlist_e.o(j).LR = LR4INPUT
 		pc.gid2cell(i).synlist_e.o(j).ltd = LTD4INPUT
+	    }
+	    for j=0, pc.gid2cell(i).synlist_i.count-1{
+		pc.gid2cell(i).synlist_i.o(j).LR = LR4INPUT_I
+		pc.gid2cell(i).synlist_i.o(j).ltd = LTD4INPUT
 	    }
 	}
     }

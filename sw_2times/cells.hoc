@@ -91,25 +91,18 @@ obfunc makeSyn() {local targetno, hostno, num_ecell, num_vta, rw_flag, start_i, 
     if(hostno<num_ecell){
 	soma {
 	    syn_ = new ExpSynSTDP(0.5)
-	    //synlist.append(syn_)
 	    synlist_e.append(syn_)
 	}
 	//num_vta means the initial vtap points...
 	if(rw_flag){
 	    if(targetno<num_vta || (targetno>=start_i && targetno<end_i)){
-		
-		//if(targetno>=start_i && targetno<end_i){
-		    //printf("targetno = %d, vta = %d, start = %d, end = %d\n",targetno,num_vta,start_i,end_i)
-		//}
 		syn_.forSpike = 2
 	    }
-	}/*
-	if(hostno>=num_ecell){
-	    syn_.e=-100
-	}*/
+	}
     }else{
 	soma {
-	    syn_ = new Exp2Syn(0.5)
+	    //syn_ = new Exp2Syn(0.5)
+	    syn_ = new ExpSynSTDP_i(0.5)
 	    //synlist.append(syn_)
 	    synlist_i.append(syn_)
 	    // if(hostno>=num_ecell){

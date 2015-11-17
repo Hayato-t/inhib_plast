@@ -36,25 +36,12 @@ proc connectInputCells() { local i, j, k, targid, num_ecell,num_vta, num_cell, n
     r = new Random(25525)
     
     num_vta = 0
-/*    
-    confirm = new Matrix()
-    confirm.resize(NCELL,NCELL)
-    for i=0,NCELL-1{
-	for j=0,NCELL-1{
-	    confirm.x[i][j]=0
-	}
-    }
-    
-    */
     mem = -1
     //read_mat()
     for i=0, num_ecell-1{
 	//connect to excitatory cells
 	if(pc.gid_exists(i)){
 	    for j=0, num_ecell-1{
-		//printf("con.x[%d][%d] = %d ",i,j,con.x[i][j])
-		//for(k=0;k<con.x[i][j];k=k+1){
-		//confirm.x[i][j] = confirm.x[i][j] + 1
 		if(con.x[i][j]){
 		    //from excitatory cells
 		    for k=0, 3 {
