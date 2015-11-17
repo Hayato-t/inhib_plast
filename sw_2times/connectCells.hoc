@@ -352,5 +352,9 @@ proc set_LR(){local i, j
 	    cells.o(i).synlist_e.o(j).LR = LEARNING_RATE
 	    cells.o(i).synlist_e.o(j).ltd = LTD
 	}
+	for j=0, cells.o(i).synlist_i.count-1{
+	    cells.o(i).synlist_i.o(j).LR = LEARNING_RATE_I
+	    cells.o(i).synlist_i.o(j).ltd = LTD
+	}
     }
 }
