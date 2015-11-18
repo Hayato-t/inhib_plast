@@ -1,7 +1,7 @@
 load_file("nrngui.hoc")
 begintemplate HHneuron
 
-public soma, axon, synlist, connect2target, connectNearCells, connectFarCells, makeSyn, synlist_e, synlist_i
+public soma, axon, synlist, connect2target, connectNearCells, connectFarCells, makeSyn, synlist_e, synlist_i, makeSynUpDown
 create soma, axon
 objref esyn, esyn_for_spon, esynSTDP
 objref synlist_e, synlist_i, synlist
@@ -138,7 +138,7 @@ obfunc makeSynUpDown() {local targetno, hostno, num_ecell, num_vta, rw_flag, sta
 	    syn_ = new Exp2Syn(0.5)
 	    //syn_ = new ExpSynSTDP_i(0.5)
 	    //synlist.append(syn_)
-	    synlist_i.append(syn_)
+	    synlist.append(syn_)
 	    // if(hostno>=num_ecell){
 	    syn_.e = -100
 	    // }
