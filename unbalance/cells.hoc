@@ -114,6 +114,41 @@ obfunc makeSyn() {local targetno, hostno, num_ecell, num_vta, rw_flag, start_i, 
     return syn_
 }
 
+obfunc makeSynUpDown() {local targetno, hostno, num_ecell, num_vta, rw_flag, start_i, end_i
+    targetno = $1
+    hostno = $2
+    num_ecell = $3
+    num_vta = $4
+    rw_flag = $5
+    start_i = $6
+    end_i = $7
+    //if(targetno<num_ecell){
+    if(hostno<num_ecell){
+	soma {
+	    syn_ = new ExpSynSTDP(0.5)
+	    //synlist.append(syn_)
+	    synlist_e.append(syn_)
+	}
+	//num_vta means the initial vtap points...
+	if(rw_flag){
+	    if(targetno<num_vta || (targetno>=start_i && targetno<end_i)){
+		syn_.forSpike = 2
+	    }
+	}
+    }else{
+	soma {
+	    syn_ = new Exp2Syn(0.5)
+	   // syn_ = new ExpSynSTDP_i(0.5)
+	    //synlist.append(syn_)
+	    synlist_i.append(syn_)
+	    // if(hostno>=num_ecell){
+	    syn_.e = -100
+	    // }
+	}
+    }
+    return syn_
+}
+
 
 endtemplate HHneuron
 
