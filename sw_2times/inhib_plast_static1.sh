@@ -24,6 +24,7 @@
 #PJM --mail-list "fukuda@g.brain.imi.i.u-tokyo.ac.jp"
 #
 
+. /work/system/Env_base
 
 #NRNIV="../../../neuron_kplus/specials/sparc64/special -mpi"
 NRNIV="./special -mpi"
@@ -39,7 +40,7 @@ NRNOPT=\
 " -c OUT1_SPON_E_T=0.35"\
 " -c DOPAMINE=0.01"\
 " -c LEARNING_RATE=0.0001"\
-" -c LEARNING_RATE_I = 0.0001"\
+" -c LEARNING_RATE_I=0.0001"\
 " -c OUT1_SPON_I_K=0.15"\
 " -c OUT1_SPON_I_T=0.3"\
 " -c LTD=1.25"
