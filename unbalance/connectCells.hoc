@@ -400,7 +400,7 @@ proc set_LR_input(){local i, j
 	    }
 	    for j=0, pc.gid2cell(i).synlist_i.count-1{
 		pc.gid2cell(i).synlist_i.o(j).LR = LR4INPUT_I
-		pc.gid2cell(i).synlist_i.o(j).ltd = LTD4INPUT
+		pc.gid2cell(i).synlist_i.o(j).ltd = LTD4INPUT*0.666
 	    }
 	}
     }

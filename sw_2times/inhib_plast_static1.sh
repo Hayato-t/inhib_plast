@@ -32,7 +32,7 @@ HOC_NAME="./network.hoc"
 
 NRNOPT=\
 " -c OUT1_E=0.001"\
-" -c OUT1_I=0.001"\
+" -c OUT1_I=0.01"\
 " -c IO_E=0.002"\
 " -c IO_I2E=0.003"\
 " -c IO_I2I=0.001"\
