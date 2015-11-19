@@ -2,7 +2,7 @@
 #
 #PJM --rsc-list "rscgrp=small"
 #PJM --rsc-list "node=120"
-#PJM --rsc-list "elapse=01:00:00"
+#PJM --rsc-list "elapse=00:30:00"
 #PJM --mpi "proc=960"
 #PJM --stg-transfiles all
 #PJM --mpi "use-rankdir"
