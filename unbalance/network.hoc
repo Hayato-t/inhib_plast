@@ -28,6 +28,7 @@ if(!name_declared("LTD")) { LTD=1 }
 if(!name_declared("LTD4INPUT")) { LTD4INPUT=1 }
 if(!name_declared("LEARNING_RATE_I")){ LEARNING_RATE_I=0.0001}
 if(!name_declared("LR4INPUT_I")){ LR4INPUT_I=0.00025}
+if(!name_declared("LTD4INPUT_I")){ LTD4INPUT_I=0.666}
 
 v_init = -65
 NCELL = 512//200

@@ -142,8 +142,11 @@ proc forTestOut2(){ local i
     }
 }
 
-proc initDA(){ local i
+proc initDA(){ local i, j
     for i=0, cells.count-1{
 	cells.o(i).synlist_e.o(0).forDA=0.02
+	for j=0, cells.o(i).synlist_i.count-1{
+	    cells.o(i).synlist_i.o(j).forDA=0.02
+	}
     }
 }
