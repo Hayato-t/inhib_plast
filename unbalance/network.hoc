@@ -195,26 +195,12 @@ switch_timing=STIM_DUR_MOVE*4*LT4INPUT
 
 //for(time=0;time<tstop_max;time+=steptime){
 for(time=0;time<tstop_max;time+=datiming){
-    //printf("\n\n\nt = %lf \n\n\n",t)
-    /*if(time>=tstop_max-dt){
-	printf("\n\n\nt=%lf\n\n\n",t)
-    }*/
-    //pc.psolve(tstop)
     pc.psolve(time+datiming)
     pc.barrier()
-    //tstop += steptime
-    //if(time>=datiming){
-    signalDA(NCELL_VTA,NCELL_E,NSYN_MAX,NCELL_FULL,NCELL,NCELL_OUT1,NCELL_OUT2,NCELL_OUT1_E,NCELL_OUT2_E)
-//	datiming = datiming + 1//2//5//1
-  //  }
-    /*if(time==1 || time==5000 || time==10000 || time == 15000 || time==20000){
-	for conf=0, 4 {
-	    if(pc.gid_exists(512+conf*12)){
-		printf("flags is %d \n",pc.gid2cell(512+conf*12).synlist_e.o(0).forSpike)
-	    }
-	}
-    }*/
-    
+    //give rewards to the network only when the stim_flag_move is 0 or 2.
+    if(stim_flag_move==0 || stim_flag_move==2){
+	signalDA(NCELL_VTA,NCELL_E,NSYN_MAX,NCELL_FULL,NCELL,NCELL_OUT1,NCELL_OUT2,NCELL_OUT1_E,NCELL_OUT2_E)
+    }
     if(time>=init_time){
 	init_time += init_interval
 	initDA()
@@ -298,11 +284,7 @@ for(time=0;time<tstop_max;time+=datiming){
 	if(stim_counter_move<=stim_order_move.size-1){
 	    stim_flag_move = stim_order_move.x(stim_counter_move)
 	}
-	//give rewards to only one direction(each in the vertical and horizontal move)
-	if(stim_flag_move==0 || stim_flag_move==2){
-	    changeFlags2(0+SECTION_OUT2_E*stim_flag_move,20+SECTION_OUT2_E*stim_flag_move,80+SECTION_OUT2_I*stim_flag_move,85+SECTION_OUT2_I*stim_flag_move,400,100,512,320,80)
-	    printf("change flags to %d \n",stim_flag_move)
-	}
+	changeFlags2(0+SECTION_OUT2_E*stim_flag_move,20+SECTION_OUT2_E*stim_flag_move,80+SECTION_OUT2_I*stim_flag_move,85+SECTION_OUT2_I*stim_flag_move,400,100,512,320,80)
     }
     
     //test for change flags in stdp.mod
